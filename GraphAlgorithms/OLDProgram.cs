@@ -1,13 +1,13 @@
-﻿// using System.Collections;
-// using System.Collections.Frozen;
-// using System.Diagnostics;
-// using System.Numerics;
-// using Ai1_Search_Methods.SearchMethods;
+﻿using System.Collections;
+using System.Collections.Frozen;
+using System.Diagnostics;
+using System.Numerics;
+using Ai1_Search_Methods.SearchMethods;
 // using Spectre.Console;
-// using static Ai1_Search_Methods.GlobalData;
-//
-// namespace Ai1_Search_Methods;
-//
+using static Ai1_Search_Methods.GlobalData;
+
+namespace Ai1_Search_Methods;
+
 // internal class Program
 // {
 //     Dictionary<string, SearchMethod> searchMethods = new()
@@ -192,8 +192,8 @@
 //     }
 // }
 //
-// internal static class GlobalData
-// {
-//     public static FrozenDictionary<string, List<string>> adjacencies;
-//     public static FrozenDictionary<string, Vector2> coordinates;
-// }
+internal static class GlobalData
+{
+    public static FrozenDictionary<string, List<string>> adjacencies;
+    public static FrozenDictionary<string, Vector2> coordinates;
+}
