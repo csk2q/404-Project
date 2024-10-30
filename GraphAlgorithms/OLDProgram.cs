@@ -2,11 +2,11 @@
 using System.Collections.Frozen;
 using System.Diagnostics;
 using System.Numerics;
-using Ai1_Search_Methods.SearchMethods;
+using GraphAlgorithms.SearchMethods;
 // using Spectre.Console;
-using static Ai1_Search_Methods.GlobalData;
+using static GraphAlgorithms.GlobalData;
 
-namespace Ai1_Search_Methods;
+namespace GraphAlgorithms;
 
 // internal class Program
 // {

@@ -1,7 +1,8 @@
-using System.Numerics;
-using static Ai1_Search_Methods.GlobalData;
+using GraphAlgorithms.DataStructures;
+using GraphAlgorithms.SearchMethods;
+using static GraphAlgorithms.GlobalData;
 
-namespace Ai1_Search_Methods.SearchMethods;
+namespace GraphAlgorithms.SearchAlgorithms;
 
 public class BreathFirstSearch() : SearchMethod()
 {

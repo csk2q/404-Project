@@ -1,10 +1,9 @@
 // #define DEBUG_PRINT
 
-using System.Diagnostics;
-using System.Numerics;
-using static Ai1_Search_Methods.GlobalData;
+using GraphAlgorithms.SearchMethods;
+using static GraphAlgorithms.GlobalData;
 
-namespace Ai1_Search_Methods.SearchMethods;
+namespace GraphAlgorithms.SearchAlgorithms;
 
 public class AStarSearch() : SearchMethod()
 {

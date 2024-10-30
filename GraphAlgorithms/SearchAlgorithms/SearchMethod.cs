@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Numerics;
-using static Ai1_Search_Methods.GlobalData;
+using static GraphAlgorithms.GlobalData;
 
 
-namespace Ai1_Search_Methods.SearchMethods;
+namespace GraphAlgorithms.SearchMethods;
 
 public abstract class SearchMethod()
 {
