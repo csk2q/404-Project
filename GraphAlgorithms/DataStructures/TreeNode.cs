@@ -1,6 +1,6 @@
-using Ai1_Search_Methods.SearchMethods;
+using GraphAlgorithms.SearchMethods;
 
-namespace Ai1_Search_Methods;
+namespace GraphAlgorithms.DataStructures;
 
 public class TreeNode()
 {
