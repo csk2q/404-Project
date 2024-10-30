@@ -16,10 +16,10 @@ public class IDDFS() : SearchMethod()
 
         int curMaxDepth = 3;
 
-        Node root = new(start);
-        Node? goalNode = null;
+        TreeNode root = new(start);
+        TreeNode? goalNode = null;
         HashSet<string> seenNodes = [start];
-        LinkedList<Node> leafNodes = [];
+        LinkedList<TreeNode> leafNodes = [];
         leafNodes.AddLast(root);
 
         
@@ -78,7 +78,7 @@ public class IDDFS() : SearchMethod()
 
         // Build and return path to goal
         LinkedList<string> path = [];
-        for (Node? node = goalNode; node is not null; node = node.Parent)
+        for (TreeNode? node = goalNode; node is not null; node = node.Parent)
             path.AddFirst(node.Name);
         return path.ToArray();
     }

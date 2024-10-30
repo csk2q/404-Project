@@ -10,15 +10,15 @@ public class BreathFirstSearch() : SearchMethod()
         if (start == goal)
             return [start];
         
-        Node root = new(start);
-        Node? goalNode = null;
+        TreeNode root = new(start);
+        TreeNode? goalNode = null;
         HashSet<string> seenNodes = [start];
-        List<Node> leafNodes = [root];
+        List<TreeNode> leafNodes = [root];
 
         while (goalNode is null)
         {
-            List<Node> newLeaves = [];
-            foreach (Node leafNode in leafNodes)
+            List<TreeNode> newLeaves = [];
+            foreach (TreeNode leafNode in leafNodes)
             {
                 var adjNodes = adjacencies[leafNode.Name];
                 foreach (var adjNodeName in adjNodes)
@@ -49,7 +49,7 @@ public class BreathFirstSearch() : SearchMethod()
 
         //Travers node chain to start
         LinkedList<string> path = [];
-        for (Node? curNode = goalNode; curNode is not null; curNode = curNode.Parent)
+        for (TreeNode? curNode = goalNode; curNode is not null; curNode = curNode.Parent)
             path.AddFirst(curNode.Name);
         //Return path
         return path.ToArray();

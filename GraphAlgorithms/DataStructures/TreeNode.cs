@@ -2,22 +2,22 @@ using Ai1_Search_Methods.SearchMethods;
 
 namespace Ai1_Search_Methods;
 
-public class Node()
+public class TreeNode()
 {
     public int depth = 0;
     
     public string Name = "Name not set";
-    public Node? Parent = null;
-    public List<Node> Children = [];
+    public TreeNode? Parent = null;
+    public List<TreeNode> Children = [];
 
-    public Node(string name) : this()
+    public TreeNode(string name) : this()
     {
         Name = name;
     }
 
-    public Node AddChild(string name)
+    public TreeNode AddChild(string name)
     {
-        var node = new Node
+        var node = new TreeNode
         {
             Name = name,
             Parent = this,

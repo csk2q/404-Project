@@ -12,18 +12,18 @@ public class BestFirstSearch() : SearchMethod()
         if (start == goal)
             return [start];
 
-        Node root = new(start);
-        Node? goalNode = null;
+        TreeNode root = new(start);
+        TreeNode? goalNode = null;
         HashSet<string> seenNodes = [start];
 
         // Priority queue is a min heap
-        PriorityQueue<Node, float> leafNodes = new();
+        PriorityQueue<TreeNode, float> leafNodes = new();
         leafNodes.Enqueue(root, distanceBetween(start, goal));
 
         while (goalNode is null)
         {
             // Get the node closest to goal
-            Node closestToGoalNode = leafNodes.Dequeue();
+            TreeNode closestToGoalNode = leafNodes.Dequeue();
 
             // For each adjacent node
             foreach (var adjNodeName in adjacencies[closestToGoalNode.Name])
@@ -47,7 +47,7 @@ public class BestFirstSearch() : SearchMethod()
 
         // Build and return path to goal
         LinkedList<string> path = [];
-        for (Node? curNode = goalNode; curNode is not null; curNode = curNode.Parent)
+        for (TreeNode? curNode = goalNode; curNode is not null; curNode = curNode.Parent)
             path.AddFirst(curNode.Name);
         return path.ToArray();
     }
