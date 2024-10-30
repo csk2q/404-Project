@@ -5,6 +5,7 @@ public class AdjacencyMatrix<T> where T : notnull
 
     private Dictionary<T, int> edgeCount;
     private readonly Dictionary<T, Dictionary<T, bool>> matrix;
+    private Dictionary<T, List<T>> adjNodeCache;
 
     public readonly bool Symmetric;
     public int Size => matrix.Count;
@@ -15,6 +16,7 @@ public class AdjacencyMatrix<T> where T : notnull
             throw new ArgumentException("Not enough nodes. Please provide at least one node.");
 
         Symmetric = isSymmetric;
+        adjNodeCache = new Dictionary<T, List<T>>();
 
         // Create matrix
         matrix = new Dictionary<T, Dictionary<T, bool>>();
@@ -39,10 +41,12 @@ public class AdjacencyMatrix<T> where T : notnull
     {
         matrix[x][y] = value;
         edgeCount[x] += 1;
+        adjNodeCache.Remove(x);
         if (Symmetric)
         {
             matrix[y][x] = value;
             edgeCount[y] += 1;
+            adjNodeCache.Remove(y);
         }
     }
 
@@ -51,12 +55,17 @@ public class AdjacencyMatrix<T> where T : notnull
     public int CountEdgesFrom(T x)
     {
         return edgeCount[x];
-        // int count = 0;
-        //
-        // foreach (var edge in matrix[x])
-        //     if (edge.Value)
-        //         count++;
-        //
-        // return count;
+    }
+
+    public List<T> GetAdjacentNodes(T x)
+    {
+        if(adjNodeCache.TryGetValue(x, out var adjNodes))
+            return adjNodes;
+        else
+        {
+            adjNodes = matrix[x].Where(pair => pair.Value).Select(pair => pair.Key).ToList();
+            adjNodeCache[x] = adjNodes;
+            return adjNodes;
+        }
     }
 }
