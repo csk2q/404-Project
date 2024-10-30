@@ -1,8 +1,7 @@
 using GraphAlgorithms.DataStructures;
-using GraphAlgorithms.SearchMethods;
 using static GraphAlgorithms.GlobalData;
 
-namespace GraphAlgorithms.SearchAlgorithms;
+namespace GraphAlgorithms.OldSearchAlgorithms;
 
 public class BestFirstSearch() : SearchMethod()
 {

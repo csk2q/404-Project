@@ -1,9 +1,8 @@
-﻿using System.Diagnostics;
-using System.Numerics;
+﻿using System.Numerics;
 using static GraphAlgorithms.GlobalData;
 
 
-namespace GraphAlgorithms.SearchMethods;
+namespace GraphAlgorithms.OldSearchAlgorithms;
 
 public abstract class SearchMethod()
 {

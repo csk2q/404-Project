@@ -1,9 +1,8 @@
 // #define DEBUG_PRINT
 
-using GraphAlgorithms.SearchMethods;
 using static GraphAlgorithms.GlobalData;
 
-namespace GraphAlgorithms.SearchAlgorithms;
+namespace GraphAlgorithms.OldSearchAlgorithms;
 
 public class AStarSearch() : SearchMethod()
 {
