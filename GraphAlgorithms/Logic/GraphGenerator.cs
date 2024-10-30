@@ -1,10 +1,11 @@
+using System.Collections.Frozen;
 using System.Numerics;
 using GraphAlgorithms;
 using GraphAlgorithms.DataStructures;
 
 namespace GraphAlgorithms.Logic;
 
-public record Graph(NeoNode[] Nodes, AdjacencyMatrix<NeoNode> Edges);
+public record Graph(FrozenDictionary<string, int> nodeAndCost, AdjacencyMatrix<NeoNode> Edges);
 
 public class GraphGenerator
 {
@@ -77,6 +78,10 @@ public class GraphGenerator
             completeNodes.Add(node);
         }
 
-        return new Graph(completeNodes.ToArray(), adjMatrix);
+        Dictionary<string, int> toBeFrozenNodes = new (completeNodes.Count());
+        foreach (var completeNode in completeNodes)
+            toBeFrozenNodes.Add(completeNode.Name, completeNode.Cost);            
+        
+        return new Graph(toBeFrozenNodes.ToFrozenDictionary(), adjMatrix);
     }
 }

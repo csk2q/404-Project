@@ -15,10 +15,10 @@ public class NeoNode
     public string Name;
     // public List<NeoNode> LinkedNodes;
     // public Vector2 Position;
-    public decimal Cost;
+    public int Cost;
 
     // public NeoNode(string name, Vector2 position, decimal cost, List<NeoNode>?  linkedNodes = null)
-    public NeoNode(string name, decimal cost)
+    public NeoNode(string name, int cost)
     {
         this.Name = name;
         // this.LinkedNodes = linkedNodes ?? [];
