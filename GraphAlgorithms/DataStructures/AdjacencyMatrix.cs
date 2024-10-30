@@ -2,6 +2,8 @@ namespace GraphAlgorithms.DataStructures;
 
 public class AdjacencyMatrix<T> where T : notnull
 {
+
+    private Dictionary<T, int> edgeCount;
     private readonly Dictionary<T, Dictionary<T, bool>> matrix;
 
     public readonly bool Symmetric;
@@ -18,11 +20,12 @@ public class AdjacencyMatrix<T> where T : notnull
         matrix = new Dictionary<T, Dictionary<T, bool>>();
 
 
-        // Blank matrix column
+        edgeCount = new Dictionary<T, int>();
         var column = new Dictionary<T, bool>();
         foreach (var node in nodes)
         {
             column.Add(node, false);
+            edgeCount.Add(node, 0);
         }
 
         // Copy the blank column to fill out the rows
@@ -35,20 +38,25 @@ public class AdjacencyMatrix<T> where T : notnull
     public void SetAdjacency(T x, T y, bool value)
     {
         matrix[x][y] = value;
+        edgeCount[x] += 1;
         if (Symmetric)
+        {
             matrix[y][x] = value;
+            edgeCount[y] += 1;
+        }
     }
 
     public bool GetAdjacency(T x, T y) => matrix[x][y];
 
     public int CountEdgesFrom(T x)
     {
-        int count = 0;
-
-        foreach (var edge in matrix[x])
-            if (edge.Value)
-                count++;
-
-        return count;
+        return edgeCount[x];
+        // int count = 0;
+        //
+        // foreach (var edge in matrix[x])
+        //     if (edge.Value)
+        //         count++;
+        //
+        // return count;
     }
 }

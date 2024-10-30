@@ -12,7 +12,7 @@ public class GraphGenerator
     {
     }
 
-    public static Graph GenerateRandomGraph(int seed, int nodeCount, 
+    public static Graph GenerateRandomGraph(int seed, int nodeCount,
         int minEdges, int maxEdges,
         int minCost, int maxCost)
     {
@@ -35,28 +35,37 @@ public class GraphGenerator
             adjMatrix.SetAdjacency(nodes[i], nodes[randPreviousNodeIndex], true);
         }
 
+        // Add edges to nodes
         for (var i = 1; i < nodeCount; i++)
         {
-            var targetEdgeCount = rand.Next(minEdges, maxEdges + 1);
-            int edgesNeeded = adjMatrix.CountEdgesFrom(nodes[i]) - targetEdgeCount;
+            var localMaxEdges = (int)Math.Max(Math.Ceiling(Math.Sqrt(maxEdges + 1)), minEdges);
+            var targetEdgeCount = rand.Next(minEdges, localMaxEdges);
+            int currentEdgeCount = adjMatrix.CountEdgesFrom(nodes[i]);
+            int attemptCount = 0;
+            int maxAttempts = nodeCount * 2;
 
-            for (int j = 0; j < edgesNeeded; j++)
+            while (currentEdgeCount - targetEdgeCount > 0 && attemptCount < maxAttempts)
             {
-                int attemptCount = 0;
-                
                 var otherNodeIndex = rand.Next(0, nodeCount);
-                
+                attemptCount++;
+
                 // Prevent self loops
-                while ((otherNodeIndex == i || adjMatrix.CountEdgesFrom(nodes[otherNodeIndex]) >= maxEdges) && attemptCount < nodeCount - 1)
-                {
-                    otherNodeIndex = rand.Next(0, nodeCount);
-                    attemptCount++;
-                }
+                // Prevent adding edges to nodes that already have the maximum number of edges
+                // Prevent adding an edge that already exists
+                if (otherNodeIndex == i
+                    || adjMatrix.CountEdgesFrom(nodes[otherNodeIndex]) >= maxEdges
+                    || adjMatrix.GetAdjacency(nodes[i], nodes[otherNodeIndex]))
+                    continue;
                 
-                if (attemptCount < nodeCount - 1)
-                    adjMatrix.AddAdjacency(nodes[i], nodes[otherNodeIndex]);
+
+                adjMatrix.AddAdjacency(nodes[i], nodes[otherNodeIndex]);
+                currentEdgeCount++;
+                Console.WriteLine($"Attempt count: {attemptCount}");
+                attemptCount = 0;
             }
-            
+
+            if (attemptCount > 0)
+                Console.WriteLine($"Abandoned due to attempt count: {attemptCount}");
         }
 
         return new Graph(nodes, adjMatrix);
