@@ -3,7 +3,7 @@ using static GraphAlgorithms.GlobalData;
 
 namespace GraphAlgorithms.OldSearchAlgorithms;
 
-public class IDDFS() : SearchMethod()
+public class IDDFS() : OldSearchMethod()
 {
     const int DepthStepSize = 3; //Note: depth is counted up from zero.
 

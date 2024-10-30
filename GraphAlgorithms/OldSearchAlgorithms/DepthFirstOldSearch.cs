@@ -2,7 +2,7 @@ using static GraphAlgorithms.GlobalData;
 
 namespace GraphAlgorithms.OldSearchAlgorithms;
 
-public class DepthFirstSearch() : SearchMethod()
+public class DepthFirstOldSearch() : OldSearchMethod()
 {
     public override string[] RunSearch(string start, string goal)
     {

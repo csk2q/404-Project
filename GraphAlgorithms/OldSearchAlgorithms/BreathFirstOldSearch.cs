@@ -3,7 +3,7 @@ using static GraphAlgorithms.GlobalData;
 
 namespace GraphAlgorithms.OldSearchAlgorithms;
 
-public class BreathFirstSearch() : SearchMethod()
+public class BreathFirstOldSearch() : OldSearchMethod()
 {
     public override string[] RunSearch(string start, string goal)
     {

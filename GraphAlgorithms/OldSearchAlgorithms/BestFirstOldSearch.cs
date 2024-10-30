@@ -3,7 +3,7 @@ using static GraphAlgorithms.GlobalData;
 
 namespace GraphAlgorithms.OldSearchAlgorithms;
 
-public class BestFirstSearch() : SearchMethod()
+public class BestFirstOldSearch() : OldSearchMethod()
 {
     // Keep and open list of frontier nodes and always pick the closest option
     public override string[] RunSearch(string start, string goal)

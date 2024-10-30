@@ -4,7 +4,7 @@ using static GraphAlgorithms.GlobalData;
 
 namespace GraphAlgorithms.OldSearchAlgorithms;
 
-public class AStarSearch() : SearchMethod()
+public class AStarOldSearch() : OldSearchMethod()
 {
     string goalNodeName = "not yet set";
 
@@ -130,7 +130,7 @@ class StarNode()
             Name = name,
             Parent = this,
             depth = depth + 1,
-            costToThisNode = this.costToThisNode + SearchMethod.distanceBetween(Name, name),
+            costToThisNode = this.costToThisNode + OldSearchMethod.distanceBetween(Name, name),
         };
         Children.Add(node);
         return node;

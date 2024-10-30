@@ -9,13 +9,13 @@ namespace GraphAlgorithms;
 
 // internal class Program
 // {
-//     Dictionary<string, SearchMethod> searchMethods = new()
+//     Dictionary<string, OldSearchMethod> searchMethods = new()
 //     {
-//         { "breadth-first search", new BreathFirstSearch() },
-//         { "depth-first search", new DepthFirstSearch() },
+//         { "breadth-first search", new BreathFirstOldSearch() },
+//         { "depth-first search", new DepthFirstOldSearch() },
 //         { "ID-DFS search", new IDDFS() },
-//         { "best-first search", new BestFirstSearch() },
-//         { "A* search", new AStarSearch() },
+//         { "best-first search", new BestFirstOldSearch() },
+//         { "A* search", new AStarOldSearch() },
 //     };
 //
 //     static void OldMain(string[] args) => new Program().RunMain();
@@ -100,7 +100,7 @@ namespace GraphAlgorithms;
 //     {
 //         float length = 0;
 //         for (int i = 1; i < cities.Length; i++)
-//             length += SearchMethod.distanceBetween(cities[i - 1], cities[i]);
+//             length += OldSearchMethod.distanceBetween(cities[i - 1], cities[i]);
 //         return length;
 //     }
 //

@@ -4,7 +4,7 @@ using static GraphAlgorithms.GlobalData;
 
 namespace GraphAlgorithms.OldSearchAlgorithms;
 
-public abstract class SearchMethod()
+public abstract class OldSearchMethod()
 {
     
     public abstract string[] RunSearch(string start, string goal);
