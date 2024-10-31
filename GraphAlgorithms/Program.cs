@@ -11,8 +11,8 @@ class Program
     {
         Console.WriteLine("Generating Graph...!");
         // Note best first only seems to work for this set of values some how.
-        var graph = GraphGenerator.GenerateRandomGraph(1234, 1000, 1, 20, 1, 10);
-        // var graph = GraphGenerator.GenerateRandomGraph(1234, 500, 1, 3, 1, 10);
+        var graph = GraphGenerator.OLDGenerateRandomGraph(1234, 1000, 1, 20, 1, 10);
+        // var graph = GraphGenerator.OLDGenerateRandomGraph(1234, 500, 1, 3, 1, 10);
         Console.WriteLine("Graph Generated!");
 
         var pathLengths = new int[1000];

@@ -14,9 +14,30 @@ public class GraphGenerator
     private GraphGenerator()
     {
     }
+
+    
+    /*
+     * https://stackoverflow.com/questions/39112540/randomly-connected-graph-generator
+     * https://en.wikipedia.org/wiki/Fisher–Yates_shuffle#The_modern_algorithm
+     * https://networkx.org/documentation/stable/reference/generators.html
+     * a, b = b, a
+     */
+    public static Graph GenerateRandomGraph(int seed, int nodeCount,
+        int edgeCount,
+        int minCost, int maxCost)
+    {
+        if(edgeCount < nodeCount)
+            throw new ArgumentException($"edgeCount({edgeCount}) must be greater than nodeCount({nodeCount})!");
+        
+        if (minCost > maxCost)
+            throw new ArgumentException($"minCost must be smaller than minCost!");
+
+
+        return null;
+    }
     
     /* TODO rewrite this because the max distance is three between all nodes. */
-    public static Graph GenerateRandomGraph(int seed, int nodeCount,
+    public static Graph OLDGenerateRandomGraph(int seed, int nodeCount,
         int minEdges, int maxEdges,
         int minCost, int maxCost)
     {
