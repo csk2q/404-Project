@@ -17,7 +17,7 @@ class Program
 
         var pathLengths = new int[1000];
 
-        /*Parallel.For(0, pathLengths.Length, i =>
+        Parallel.For(0, pathLengths.Length, i =>
         {
             Parallel.For(0, pathLengths.Length, j =>
             {
@@ -27,9 +27,9 @@ class Program
                 pathLengths[i] = new BestFirstSearch().RunSearch(i.ToString(), j.ToString(), graph).Length;
             });
             Console.WriteLine("Finished i=" + i);
-        });*/
+        });
 
-        for (var i = 0; i < pathLengths.Length; i++)
+        /*for (var i = 0; i < pathLengths.Length; i++)
         {
             for (var j = 0; j < pathLengths.Length; j++)
             {
@@ -37,7 +37,7 @@ class Program
             }
 
             Console.WriteLine("Finished i=" + i);
-        }
+        }*/
 
         Console.WriteLine($"Max path length: {pathLengths.Max()}");
         Dictionary<int, int> pathLengthBuckets = new Dictionary<int, int>();
