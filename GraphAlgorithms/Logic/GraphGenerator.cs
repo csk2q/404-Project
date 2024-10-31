@@ -15,6 +15,7 @@ public class GraphGenerator
     {
     }
     
+    /* TODO rewrite this because the max distance is three between all nodes. */
     public static Graph GenerateRandomGraph(int seed, int nodeCount,
         int minEdges, int maxEdges,
         int minCost, int maxCost)
