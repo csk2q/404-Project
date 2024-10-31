@@ -33,10 +33,10 @@ class Program
         {
             for (var j = 0; j < pathLengths.Length; j++)
             {
-                pathLengths[i] = new BestFirstSearch().RunSearch(i.ToString(), j.ToString(), graph).Length;
+                pathLengths[i] = new BreathFirstSearch().RunSearch(i.ToString(), j.ToString(), graph).Length;
             }
 
-            Console.WriteLine("Finished i=" + i);
+            Console.WriteLine("Finished i=" + i + $" {pathLengths[i]}");
         }
 
         Console.WriteLine($"Max path length: {pathLengths.Max()}");
