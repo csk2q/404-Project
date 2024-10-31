@@ -5,14 +5,16 @@ using GraphAlgorithms.DataStructures;
 
 namespace GraphAlgorithms.Logic;
 
-public record Graph(FrozenDictionary<string, int> nodeAndCost, AdjacencyMatrix<NeoNode> Edges);
+public record Graph(FrozenDictionary<string, int> nodeAndCost, AdjacencyMatrix<string> Edges);
 
 public class GraphGenerator
 {
+    private const bool DEBUG_Prints = false;
+    
     private GraphGenerator()
     {
     }
-
+    
     public static Graph GenerateRandomGraph(int seed, int nodeCount,
         int minEdges, int maxEdges,
         int minCost, int maxCost)
@@ -27,13 +29,13 @@ public class GraphGenerator
         }
 
         // Create undirected/symmetric adjacency matrix
-        AdjacencyMatrix<NeoNode> adjMatrix = new(nodes, true);
+        AdjacencyMatrix<string> adjMatrix = new(nodes.Select(n => n.Name).ToArray(), true);
 
         // Create a minimum spanning tree from the existing nodes
         for (var i = 1; i < nodeCount; i++)
         {
             var randPreviousNodeIndex = rand.Next(0, i);
-            adjMatrix.SetAdjacency(nodes[i], nodes[randPreviousNodeIndex], true);
+            adjMatrix.SetAdjacency(nodes[i].Name, nodes[randPreviousNodeIndex].Name, true);
         }
 
         List<NeoNode> incompleteNodes = new (nodes);
@@ -45,11 +47,11 @@ public class GraphGenerator
             var node = incompleteNodes[incompleteNodes.Count - 1];
             incompleteNodes.RemoveAt(incompleteNodes.Count - 1);
 
-            if (adjMatrix.CountEdgesFrom(node) < maxEdges)
+            if (adjMatrix.CountEdgesFrom(node.Name) < maxEdges)
             {
                 var localMaxEdges = (int)Math.Max(Math.Ceiling(Math.Sqrt(maxEdges + 1)), minEdges);
                 var targetEdgeCount = rand.Next(minEdges, localMaxEdges);
-                int currentEdgeCount = adjMatrix.CountEdgesFrom(node);
+                int currentEdgeCount = adjMatrix.CountEdgesFrom(node.Name);
                 int attemptCount = 0;
                 int maxAttempts = nodeCount * 2;
 
@@ -61,17 +63,18 @@ public class GraphGenerator
 
                     // Prevent adding edges to nodes that already have the maximum number of edges
                     // Prevent adding an edge that already exists
-                    if (adjMatrix.CountEdgesFrom(incompleteNodes[otherNodeIndex]) >= maxEdges
-                        || adjMatrix.GetAdjacency(node, incompleteNodes[otherNodeIndex]))
+                    if (adjMatrix.CountEdgesFrom(incompleteNodes[otherNodeIndex].Name) >= maxEdges
+                        || adjMatrix.GetAdjacency(node.Name, incompleteNodes[otherNodeIndex].Name))
                         continue;
 
-                    adjMatrix.AddAdjacency(node, incompleteNodes[otherNodeIndex]);
+                    adjMatrix.AddAdjacency(node.Name, incompleteNodes[otherNodeIndex].Name);
                     currentEdgeCount++;
-                    Console.WriteLine($"Attempt count: {attemptCount}");
+                    if(DEBUG_Prints)
+                        Console.WriteLine($"Attempt count: {attemptCount}");
                     attemptCount = 0;
                 }
 
-                if (attemptCount > 0)
+                if (DEBUG_Prints && attemptCount > 0)
                     Console.WriteLine($"Abandoned due to attempt count: {attemptCount}");
             }
 

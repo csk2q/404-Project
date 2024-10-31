@@ -64,7 +64,7 @@ public class AdjacencyMatrix<T> where T : notnull
         else
         {
             adjNodes = matrix[x].Where(pair => pair.Value).Select(pair => pair.Key).ToList();
-            adjNodeCache[x] = adjNodes;
+            adjNodeCache.Add(x, adjNodes);
             return adjNodes;
         }
     }
