@@ -38,19 +38,22 @@ public class MyBenchmark
         Console.WriteLine("Graph Generated!");
 
         Random rnd = new Random(Seed);
-        x = rnd.Next(0, graph.nodeAndCost.Count).ToString();
-        y = rnd.Next(0, graph.nodeAndCost.Count).ToString();
+
     }
 
     [Benchmark]
     public void BreathFirstSearch()
     {
+        x = rnd.Next(0, graph.nodeAndCost.Count).ToString();
+        y = rnd.Next(0, graph.nodeAndCost.Count).ToString();
         _ = new BreathFirstSearch().RunSearch(x, y, graph);
     }
 
     [Benchmark]
     public void DepthFirstSearch()
     {
+        x = rnd.Next(0, graph.nodeAndCost.Count).ToString();
+        y = rnd.Next(0, graph.nodeAndCost.Count).ToString();
         _ = new DepthFirstSearch().RunSearch(x, y, graph);
     }
 
@@ -58,6 +61,8 @@ public class MyBenchmark
     [Benchmark]
     public void IterativeDeepeningDFS()
     {
+        x = rnd.Next(0, graph.nodeAndCost.Count).ToString();
+        y = rnd.Next(0, graph.nodeAndCost.Count).ToString();
         _ = new IterativeDeepeningDFS().RunSearch(x, y, graph);
     }
 
