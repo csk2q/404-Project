@@ -13,7 +13,7 @@ namespace GraphAlgorithms;
 //     {
 //         { "breadth-first search", new BreathFirstOldSearch() },
 //         { "depth-first search", new DepthFirstOldSearch() },
-//         { "ID-DFS search", new IDDFS() },
+//         { "ID-DFS search", new OldIDDFS() },
 //         { "best-first search", new BestFirstOldSearch() },
 //         { "A* search", new AStarOldSearch() },
 //     };
