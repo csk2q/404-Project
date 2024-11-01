@@ -35,7 +35,7 @@ public class MyBenchmark
     }
 
     [Benchmark]
-    public void DepthFirstSearch()
+    public void BreathFirstSearch()
     {
         Random rnd = new Random(Seed);
         var x = rnd.Next(0, graph.nodeAndCost.Count);
@@ -43,6 +43,8 @@ public class MyBenchmark
         
         _ = new BreathFirstSearch().RunSearch(x.ToString(), y.ToString(), graph);
     }
+    
+    
 
     
 }
