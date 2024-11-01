@@ -5,6 +5,8 @@ namespace GraphAlgorithms.SearchAlgorithms;
 
 public class BreathFirstSearch : ISearchAlgorithm
 {
+    private const bool DEBUG_PRINT = false;
+    
     public string[] RunSearch(string start, string goal, in Graph graph)
     {
         if (start == goal)
@@ -54,4 +56,43 @@ public class BreathFirstSearch : ISearchAlgorithm
         //Return path
         return path.ToArray();
     }
+    
+    public static void DebugRun(int searchCount, Graph graph, int seed = 100)
+    {
+        Random rnd = new Random(seed);
+        var pathLengths = new int[searchCount];
+
+        for (var i = 0; i < searchCount; i++)
+        {
+            var x = rnd.Next(0, graph.nodeAndCost.Count);
+            
+            for (var j = 0; j < searchCount; j++)
+            {
+                var y = rnd.Next(0, graph.nodeAndCost.Count);
+
+                
+                pathLengths[i] = new BreathFirstSearch().RunSearch(x.ToString(), y.ToString(), graph).Length;
+            }
+
+            if(DEBUG_PRINT)
+                Console.WriteLine("Finished i=" + i + $" {pathLengths[i]}");
+        }
+
+        if (DEBUG_PRINT)
+        {
+            Console.WriteLine($"Max path length: {pathLengths.Max()}");
+            Dictionary<int, int> pathLengthBuckets = new Dictionary<int, int>();
+
+            foreach (var pathLength in pathLengths)
+            {
+                if (pathLengthBuckets.ContainsKey(pathLength))
+                    pathLengthBuckets[pathLength]++;
+                else
+                    pathLengthBuckets.Add(pathLength, 1);
+            }
+
+            foreach (var pathLength in pathLengthBuckets)
+                Console.WriteLine($"{pathLength.Key}: {pathLength.Value}");
+
+        }
 }
