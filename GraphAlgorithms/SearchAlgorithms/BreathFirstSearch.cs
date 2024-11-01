@@ -56,7 +56,7 @@ public class BreathFirstSearch : ISearchAlgorithm
         //Return path
         return path.ToArray();
     }
-    
+
     public static void DebugRun(int searchCount, Graph graph, int seed = 100)
     {
         Random rnd = new Random(seed);
@@ -65,16 +65,16 @@ public class BreathFirstSearch : ISearchAlgorithm
         for (var i = 0; i < searchCount; i++)
         {
             var x = rnd.Next(0, graph.nodeAndCost.Count);
-            
+
             for (var j = 0; j < searchCount; j++)
             {
                 var y = rnd.Next(0, graph.nodeAndCost.Count);
 
-                
+
                 pathLengths[i] = new BreathFirstSearch().RunSearch(x.ToString(), y.ToString(), graph).Length;
             }
 
-            if(DEBUG_PRINT)
+            if (DEBUG_PRINT)
                 Console.WriteLine("Finished i=" + i + $" {pathLengths[i]}");
         }
 
@@ -95,4 +95,5 @@ public class BreathFirstSearch : ISearchAlgorithm
                 Console.WriteLine($"{pathLength.Key}: {pathLength.Value}");
 
         }
+    }
 }
