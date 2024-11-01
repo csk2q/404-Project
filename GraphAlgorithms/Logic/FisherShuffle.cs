@@ -2,8 +2,12 @@ namespace GraphAlgorithms.Logic;
 
 public class FisherShuffle
 {
+    private const bool DEBUG_PRINT = false;
+
+    
     public static void ShuffleArray<T>(ref T[] array, Random random)
     {
+        if(DEBUG_PRINT)
         Console.WriteLine("Begin shuffling array");
 
         for (int i = array.Length - 1; i > 1; i--)
@@ -19,10 +23,14 @@ public class FisherShuffle
 
             (array[x], array[y]) = (array[y], array[x]);
 
+            if(DEBUG_PRINT)
             Console.Write($"{i},");
         }
 
-        Console.WriteLine();
-        Console.WriteLine("End shuffling array");
+        if (DEBUG_PRINT)
+        {
+            Console.WriteLine();
+            Console.WriteLine("End shuffling array");
+        }
     }
 }

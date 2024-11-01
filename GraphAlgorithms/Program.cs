@@ -53,4 +53,12 @@ public class MyBenchmark
     {
         _ = new DepthFirstSearch().RunSearch(x, y, graph);
     }
+
+
+    [Benchmark]
+    public void IterativeDeepeningDFS()
+    {
+        _ = new IterativeDeepeningDFS().RunSearch(x, y, graph);
+    }
+
 }
