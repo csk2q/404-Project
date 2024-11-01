@@ -44,9 +44,10 @@ public class GraphGenerator
         AdjacencyMatrix<string> adjMatrix = new(nodes.Select(n => n.Name).ToArray(), true);
         
         // Create edges for every pair
-        for (var i = 0; i < nodes.Length; i += 2)
+        for (var i = 0; i < nodes.Length - 1; i++)
         {
             adjMatrix.AddAdjacency(nodes[i].Name, nodes[i + 1].Name);
+            if(DEBUG_Prints)
             Console.WriteLine($"{i}, {i+1}");
         }
         
@@ -54,10 +55,11 @@ public class GraphGenerator
         FisherShuffle.ShuffleArray(ref nodes, random);
         
         // Create edges for every pair
-        for (var i = 0; i < extraEdgeCount; i += 2)
+        for (var i = 0; i < extraEdgeCount; i++)
         {
             adjMatrix.AddAdjacency(nodes[i].Name, nodes[i + 1].Name);
             
+            if(DEBUG_Prints)
             Console.WriteLine($"{i}, {i+1}");
         }
 
