@@ -13,6 +13,8 @@ public class GraphGenerator
     
     private GraphGenerator()
     {
+        
+        
     }
 
     
@@ -23,17 +25,50 @@ public class GraphGenerator
      * a, b = b, a
      */
     public static Graph GenerateRandomGraph(int seed, int nodeCount,
-        int edgeCount,
+        int extraEdgeCount,
         int minCost, int maxCost)
     {
-        if(edgeCount < nodeCount)
-            throw new ArgumentException($"edgeCount({edgeCount}) must be greater than nodeCount({nodeCount})!");
-        
         if (minCost > maxCost)
             throw new ArgumentException($"minCost must be smaller than minCost!");
+        
+        var rand = new Random(seed);
+        var nodes = new NeoNode[nodeCount];
+        
+        // Create nodes
+        for (var i = 0; i < nodeCount; i++)
+        {
+            nodes[i] = new NeoNode(i.ToString(), rand.Next(minCost, maxCost));
+        }
+
+        // Create undirected/symmetric adjacency matrix
+        AdjacencyMatrix<string> adjMatrix = new(nodes.Select(n => n.Name).ToArray(), true);
+        
+        // Create edges for every pair
+        for (var i = 0; i < nodes.Length; i += 2)
+        {
+            adjMatrix.AddAdjacency(nodes[i].Name, nodes[i + 1].Name);
+            Console.WriteLine($"{i}, {i+1}");
+        }
+        
+        Random random = new(seed);
+        FisherShuffle.ShuffleArray(ref nodes, random);
+        
+        // Create edges for every pair
+        for (var i = 0; i < extraEdgeCount; i += 2)
+        {
+            adjMatrix.AddAdjacency(nodes[i].Name, nodes[i + 1].Name);
+            
+            Console.WriteLine($"{i}, {i+1}");
+        }
 
 
-        return null;
+        Dictionary<string, int> toBeFrozenNodes = new (nodes.Count());
+        foreach (var completeNode in nodes)
+            toBeFrozenNodes.Add(completeNode.Name, completeNode.Cost);
+
+
+        
+        return new Graph(toBeFrozenNodes.ToFrozenDictionary(), adjMatrix);
     }
     
     /* TODO rewrite this because the max distance is three between all nodes. */

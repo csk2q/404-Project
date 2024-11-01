@@ -15,7 +15,7 @@ public class BreathFirstSearch : ISearchAlgorithm
         HashSet<string> seenNodes = [start];
         List<TreeNode> leafNodes = [root];
 
-        while (goalNode is null)
+        while (goalNode is null && leafNodes.Count > 0)
         {
             List<TreeNode> newLeaves = [];
             foreach (TreeNode leafNode in leafNodes)
