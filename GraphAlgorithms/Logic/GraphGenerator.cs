@@ -31,7 +31,8 @@ public class GraphGenerator
         // Create undirected/symmetric adjacency matrix
         AdjacencyMatrix<string> adjMatrix = new(nodes.Select(n => n.Name).ToArray(), true);
 
-        // Create a minimum spanning tree from the existing nodes
+        // Add an edge from every node/vertext to a random other node.
+        // Note: Can generate loop
         for (var i = 1; i < nodeCount; i++)
         {
             var randPreviousNodeIndex = rand.Next(0, i);
