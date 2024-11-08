@@ -21,24 +21,32 @@ class Program
 }
 
 [MemoryDiagnoser]
+// [RPlotExporter]
 public class MyBenchmark
 {
+    [Params(1000,  10000, 100000)]
+    // [BenchmarkDotNet.Attributes.]
+    public int vertexCount;
+    
     private const int Seed = 1245;
     Random rnd = new Random(Seed);
     string x;
     string y;
 
-    private readonly Graph graph;
+    private Graph graph;
 
     public MyBenchmark()
     {
+
+    }
+    
+    [GlobalSetup]
+    public void Setup()
+    {
         Console.WriteLine("Generating Graph...!");
 
-        graph = GraphGenerator.GenerateRandomGraph(1234, 1000, 250, 1, 10);
+        graph = GraphGenerator.GenerateRandomGraph(1234, vertexCount, 250, 1, 10);
         Console.WriteLine("Graph Generated!");
-
-        Random rnd = new Random(Seed);
-
     }
 
     [Benchmark]
