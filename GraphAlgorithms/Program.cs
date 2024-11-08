@@ -24,7 +24,8 @@ class Program
 // [RPlotExporter]
 public class MyBenchmark
 {
-    [Params(1000,  10000, 100000)]
+    [Params(100, 250, 750, 1000, 2500, 5000, 7500, 10000)]
+    // [Params(1000, 2500, 5000, 7500, 10000, 25000, 50000, 75000, 100000)]
     // [BenchmarkDotNet.Attributes.]
     public int vertexCount;
     
@@ -45,7 +46,7 @@ public class MyBenchmark
     {
         Console.WriteLine("Generating Graph...!");
 
-        graph = GraphGenerator.GenerateRandomGraph(1234, vertexCount, 250, 1, 10);
+        graph = GraphGenerator.GenerateRandomGraph(1234, vertexCount, vertexCount/4, 1, 10);
         Console.WriteLine("Graph Generated!");
     }
 
